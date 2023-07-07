@@ -36,18 +36,10 @@ pipeline {
     stage('Execute on Jenkins agent') {
       steps {
         container('jenkins-agent-container') {
-          sh '''#!/bin/bash
-          pushd api/
-          make build
-          make push
-          make deploy
-          popd
-          pushd web/
-          make build
-          make push
-          make deploy
-          popd
-          kubectl apply -f db_deployment.yaml
+          sh '''
+          make run
+          make fill-db
+          
           '''
         }
       }
