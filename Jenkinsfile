@@ -37,9 +37,7 @@ pipeline {
       steps {
         container('jenkins-agent-container') {
           sh '''
-          make run
-          make fill-db
-          
+          make run          
           '''
         }
       }
